@@ -6,17 +6,24 @@ public class EratosthenesPrimeSieve implements PrimeSieve{
     }
 
     @Override
-    public boolean isPrime(int value) {
-        if (value == 2) {
-            return true;
-        }else if (value <= 2) {
+    public boolean isPrime(int n) {
+        if (n <= 1) {
             return false;
         }
-        for (long i = 2; i * i<= value; i++) {
-            if (value % i == 0) {
+        if (n == 2 || n == 3) {
+            return true;
+        }
+        if (n % 2 == 0 || n % 3 == 0) {
+            return false;
+        }
+
+        int limit = (int) Math.sqrt(n);
+        for (int i = 5; i <= limit; i += 6) {
+            if (n % i == 0 || n % (i + 2) == 0) {
                 return false;
             }
         }
+
         return true;
     }
 
